@@ -1,10 +1,10 @@
 name = 'Tailwind'
 license = 'MIT'
-licenselink = 'https://github.com/tomowang/hugo-theme-tailwind/blob/main/LICENSE'
+licenselink = 'https://github.com/tabs-not-spaces/hugo-theme-tailwind/blob/main/LICENSE'
 description = 'Clean card Hugo theme for blog, created by using tailwindcss'
 
 # The home page of the theme, where the source can be found
-homepage = 'https://github.com/tomowang/hugo-theme-tailwind'
+homepage = 'https://github.com/tabs-not-spaces/hugo-theme-tailwind'
 
 # If you have a running demo of the theme
 demosite = 'https://hugo-theme-tailwind.tomo.dev/'
@@ -29,5 +29,5 @@ features = [
 
 # If the theme has a single author
 [author]
-  name = 'Xiaoliang Wang'
-  homepage = 'https://tomo.dev'
+  name = 'Ben Reader'
+  homepage = 'https://powers-hell.com'
