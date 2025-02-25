@@ -22,6 +22,11 @@
 {{ end -}}
 <script src="{{ $jsCopy.RelPermalink }}"></script>
 {{ end -}}
+{{- $lightbox := resources.Get "js/lightbox.js" | js.Build "lightbox.js" -}}
+{{- if not hugo.IsDevelopment }}
+  {{- $lightbox = $lightbox | minify | fingerprint -}}
+{{ end -}}
+<script src="{{ $lightbox.RelPermalink }}"></script>
 
 {{ if .Params.asciinema }}{{ partial "asciinema.html" . }}{{ end }}
 
