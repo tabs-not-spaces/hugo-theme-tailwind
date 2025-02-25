@@ -1,8 +1,8 @@
 <div class="w-full bg-zinc-50 dark:bg-zinc-950 shadow-lg">
-  <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3 mx-auto">
-    <div class="flex-none ml-2 md:ml-0">
+  <div class="flex flex-row gap justify-between w-full max-w-4xl lg:max-w-5xl h-12 mt-3 mb-3 mx-auto">
+    <div class="flex-none ml-2 md:ml-0 mt-3">
       <a href="{{ relLangURL "" }}" class="">
-        <h2 class="text-2xl text-zinc-800 dark:text-zinc-200">{{ .Site.Title }}</h2>
+        <h2 class="text-2xl bg-gradient-135 from-indigo-400 to-cyan-400 bg-clip-text text-transparent">{{ .Site.Title }}</h2>
       </a>
     </div>
     <div class="flex-1"></div>
@@ -47,13 +47,13 @@
       </a>
     </div>
     <div class="darkmode-toggle flex flex-none mr-2 md:mr-0">
-      <label for="darkmode-toggle" class="flex items-center px-3 cursor-pointer rounded-full bg-zinc-100 dark:bg-zinc-600" title="{{ T "header.darkmode_toggle" }}">
+      <label for="darkmode-toggle" class="flex items-center px-3 cursor-pointer rounded-lg bg-zinc-100 dark:bg-zinc-600" title="{{ T "header.darkmode_toggle" }}">
         <input name="darkmode-toggle" id="darkmode-toggle" type="checkbox" class="sr-only peer" aria-label="{{ T "header.darkmode_toggle" }}">
-        <div class="group flex flex-row gap-1 justify-center h-8 px-1 rounded-full bg-white dark:bg-zinc-700">
-          <i class="h-6 w-6 flex-none rounded-full bg-yellow-400 place-self-center peer-checked:group-[]:invisible">
+        <div class="group flex flex-row gap-1 justify-center h-8 px-1 rounded-lg bg-white dark:bg-zinc-700">
+          <i class="h-6 w-6 flex-none rounded-lg bg-yellow-400 place-self-center peer-checked:group-[]:invisible">
             {{ partial "icon.html" "brightness-down" }}
           </i>
-          <i class="h-6 w-6 flex-none rounded-full place-self-center invisible peer-checked:group-[]:visible">
+          <i class="h-6 w-6 flex-none rounded-lg place-self-center invisible peer-checked:group-[]:visible">
             {{ partial "icon.html" "moon-stars" }}
           </i>
         </div>
