@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      backgroundImage: {
+        'gradient-135': 'linear-gradient(135deg, var(--tw-gradient-stops))',
+      },
       fontFamily: {
         fira: ["Fira Code", "monospace"],
       },

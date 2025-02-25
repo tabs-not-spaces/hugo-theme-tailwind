@@ -10,7 +10,7 @@
     </i>
   </button>
   <div class="absolute md:static top-16 left-0 right-0 z-50 hidden w-full md:block md:w-auto" id="navbar-menu">
-    <ul class="flex flex-col mx-2 md:mx-0 md:flex-row md:border-0 rounded-sm md:rounded-full px-3 text-base font-medium text-zinc-800 dark:text-zinc-200 shadow-lg bg-white dark:bg-zinc-600 shadow-zinc-800/5 dark:shadow-zinc-200/5 ring-1 ring-zinc-900/5 dark:ring-zinc-100/5">
+    <ul class="flex flex-col mx-2 md:mx-0 md:flex-row md:border-0 rounded-sm md:rounded-lg px-3 text-base font-medium text-zinc-800 dark:text-zinc-200 shadow-lg bg-white dark:bg-zinc-600 shadow-zinc-800/5 dark:shadow-zinc-200/5 ring-1 ring-zinc-900/5 dark:ring-zinc-100/5">
     {{ range . }}
       {{- $isCurrent := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) (and $page.IsHome (and .Page (eq $contentTypeName .Page.Type))) -}}
       {{ if not .HasChildren }}
@@ -24,3 +24,5 @@
   </div>
 </nav>
 {{ end }}
+
+
