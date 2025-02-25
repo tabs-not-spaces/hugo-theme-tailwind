@@ -1,7 +1,7 @@
 {
   "scripts": {
     "dev-hugo": "hugo server -s exampleSite --gc --themesDir=../..",
-    "dev-tailwind": "npx tailwindcss -i assets/css/main.css -o assets/css/index.css --watch",
+    "dev-tailwind": "npx tailwindcss -i assets/css/app.css -o assets/css/index.css --watch",
     "dev": "run-p dev-hugo dev-tailwind"
   },
   "devDependencies": {
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.0.8",
-    "postcss": "^8.5.3"
+    "postcss": "^8.5.3",
+    "postcss-import": "^16.1.0"
   }
 }
