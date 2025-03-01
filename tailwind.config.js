@@ -10,6 +10,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         'gradient-135': 'linear-gradient(135deg, var(--tw-gradient-stops))',
+        'gradient-135-hover': 'linear-gradient(135deg, var(--tw-gradient-stops-hover))',
       },
       fontFamily: {
         fira: ["Fira Code", "monospace"],
