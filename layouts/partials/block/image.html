@@ -10,7 +10,14 @@
   {{- with .Resources.Get $dest -}}
   {{- if eq .MediaType.SubType "svg" -}}
   <figure>
-    <img class="w-full object-cover h-36 md:h-48 xl:h-60" src="{{ .RelPermalink }}"
+    <img class="w-full rounded.lg" src="{{ .RelPermalink }}"
+      alt="{{ $alt }}" title="{{ $alt }}"
+      loading="lazy"
+    >
+  </figure>
+  {{- else if eq .MediaType.SubType "gif" -}}
+  <figure>
+    <img class="w-full rounded-lg" src="{{ .RelPermalink }}"
       alt="{{ $alt }}" title="{{ $alt }}"
       loading="lazy"
     >
@@ -36,13 +43,13 @@
         {{- end -}}
       {{- end -}}
     {{- end -}}" sizes="{{ $dataSzes }}" />
-    <img class="w-full object-cover h-36 md:h-48 xl:h-60" src="{{ $actualImg.RelPermalink }}" width="{{ $src.Width }}" height="{{ $src.Height }}" alt="{{ $alt }}" title="{{ $alt }}" loading="lazy" />
+    <img class="w-full" src="{{ $actualImg.RelPermalink }}" width="{{ $src.Width }}" height="{{ $src.Height }}" alt="{{ $alt }}" title="{{ $alt }}" loading="lazy" />
   </picture>
   {{- end -}}
   <!-- or otherwise simply load the URL -->
   {{- else -}}
   <figure>
-    <img class="w-full object-cover h-36 md:h-48 xl:h-60" src="{{ .Params.image | safeURL }}"
+    <img class="w-full rounded-lg" src="{{ .Params.image | safeURL }}"
       alt="{{ $alt }}" title="{{ $alt }}"
       loading="lazy"
     >
