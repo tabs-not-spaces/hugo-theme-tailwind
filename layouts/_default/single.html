@@ -3,29 +3,26 @@
 {{ end }}
 
 {{ define "main" }}
-<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500"></div>
+<div id="progress" class="fixed top-4.5 left-0 w-full h-1 bg-blue-500 z-40"></div>
 <div class="w-full max-w-4xl lg:max-w-6xl z-10">
+  <h1 class="text-4xl text-zinc-800 dark:text-cyan-400 text-center">
+    <a href="{{ .RelPermalink }}">{{ .Title | .RenderString }}</a>
+  </h1>
   <div class="flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md bg-white dark:bg-zinc-700">
-    <div>
-      <a href="{{ .RelPermalink }}">
-        {{ partial "block/image.html" . }}
-      </a>
-    </div>
     <div class="flex flex-col gap-y-3 p-6">
-      <h1 class="text-4xl font-semibold text-zinc-800 dark:text-zinc-100">
-        <a href="{{ .RelPermalink }}">{{ .Title | .RenderString }}</a>
-      </h1>
-
       {{ with .Description }}
       <h2 class="my-4 text-large text-zinc-600 dark:text-zinc-300">
         {{ . | $.Page.RenderString }}
       </h2>
       {{ end }}
-      {{ partial "block/taxonomies.html" .}}
-
       {{ partial "block/time.html" . }}
       {{ partial "block/author.html" . }}
-
+      {{ partial "block/taxonomies.html" .}}
+    </div>
+    <div class="px-6">
+      {{ partial "block/image.html" . }}
+    </div>
+    <div class="flex flex-col gap-y-3 p-6">
       {{ if or .Params.Toc $.Site.Params.Toc }}
         {{ if ne .Params.Toc false }}
         <section class="prose prose-zinc dark:prose-invert w-full max-w-4xl lg:max-w-5xl mt-6">
@@ -35,7 +32,7 @@
         {{ end }}
       {{ end }}
 
-      <article class="mt-6 w-full max-w-4xl lg:max-w-5xl prose prose-zinc dark:prose-invert prose-quoteless post-content">
+      <article class="mt-6 w-full max-w-4xl lg:max-w-6xl prose prose-zinc dark:prose-invert prose-quoteless post-content">
         {{ .Content | safeHTML }}
       </article>
 
