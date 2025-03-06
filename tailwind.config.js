@@ -8,6 +8,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      spacing: {
+        '4.5': '4.5rem',
+      },
       backgroundImage: {
         'gradient-135': 'linear-gradient(135deg, var(--tw-gradient-stops))',
         'gradient-135-hover': 'linear-gradient(135deg, var(--tw-gradient-stops-hover))',

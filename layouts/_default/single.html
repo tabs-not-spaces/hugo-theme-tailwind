@@ -3,7 +3,7 @@
 {{ end }}
 
 {{ define "main" }}
-<div id="progress" class="fixed top-0 left-0 w-full h-1 bg-blue-500 z-50"></div>
+<div id="progress" class="fixed top-4.5 left-0 w-full h-1 bg-blue-500 z-40"></div>
 <div class="w-full max-w-4xl lg:max-w-6xl z-10">
   <h1 class="text-4xl text-zinc-800 dark:text-cyan-400 text-center">
     <a href="{{ .RelPermalink }}">{{ .Title | .RenderString }}</a>
@@ -32,7 +32,7 @@
         {{ end }}
       {{ end }}
 
-      <article class="mt-6 w-full max-w-4xl lg:max-w-5xl prose prose-zinc dark:prose-invert prose-quoteless post-content">
+      <article class="mt-6 w-full max-w-4xl lg:max-w-6xl prose prose-zinc dark:prose-invert prose-quoteless post-content">
         {{ .Content | safeHTML }}
       </article>
 

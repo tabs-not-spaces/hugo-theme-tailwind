@@ -1,4 +1,3 @@
-{{/* code from https://www.brycewray.com/posts/2023/05/better-code-image-processing-hugo-render-hook-edition/ */}}
 {{- $alt := .Text -}}
 {{- $caption := .Title -}}
 
@@ -11,39 +10,43 @@
 {{- $dest = path.Join (path.Dir $dest) (path.Base $dest) -}}
 
 <div class="not-prose">
-<!-- check if it exists as a page resource -->
-{{- if and (.Page.Resources.Get $dest) (ne (.Page.Resources.Get $dest).MediaType.SubType "svg") -}}
-{{- $src := .Page.Resources.Get $dest -}}
-{{- $dataSzes := "(min-width: 1024px) 100vw, 50vw" -}}
-{{- $actualImg := $src.Resize (print "640x jpg " $filter) -}}
-  <picture>
-    <source type="image/webp" srcset="
-    {{- with $respSizes -}}
-      {{- range $i, $e := . -}}
-        {{- if ge $src.Width . -}}
-          {{- if $i }}, {{ end -}}{{- ($src.Resize (print . "x webp " $hint " " $filter) ).RelPermalink }} {{ . }}w
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}" sizes="{{ $dataSzes }}" />
-    <source type="image/jpeg" srcset="
-    {{- with $respSizes -}}
-      {{- range $i, $e := . -}}
-        {{- if ge $src.Width . -}}
-          {{- if $i }}, {{ end -}}{{- ($src.Resize (print . "x jpg " $filter) ).RelPermalink }} {{ . }}w
-        {{- end -}}
-      {{- end -}}
-    {{- end -}}" sizes="{{ $dataSzes }}" />
-    <img class="h-auto max-w-full rounded-lg" src="{{ $actualImg.RelPermalink }}" width="{{ $src.Width }}" height="{{ $src.Height }}" alt="{{ $alt }}" title="{{ $alt }}" loading="lazy" />
-  </picture>
-  {{- with $caption -}}<p class="text-sm text-center text-zinc-500 dark:text-zinc-300">{{ $caption | $.Page.RenderString }}</p>{{- end }}
-<!-- or otherwise simply load the URL -->
-{{- else -}}
-  <figure>
-    <img src="{{ .Destination | safeURL }}"
-      alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }}
-      loading="lazy"
-    >
-  {{- with $caption -}}<figcaption class="text-sm text-center text-zinc-500 dark:text-zinc-300">{{ $caption | $.Page.RenderString }}</figcaption>{{- end }}
-  </figure>
-{{- end -}}
+  <!-- check if it exists as a page resource and is not an SVG -->
+  {{- if and (.Page.Resources.Get $dest) (ne (.Page.Resources.Get $dest).MediaType.SubType "svg") -}}
+    {{- $src := .Page.Resources.Get $dest -}}
+    {{- if eq (lower $src.MediaType.SubType) "gif" -}}
+      <figure>
+        <img class="h-auto max-w-full rounded-lg" src="{{ $src.RelPermalink }}" alt="{{ $alt }}" title="{{ $alt }}" loading="lazy" />
+      </figure>
+      {{- with $caption -}}
+        <p class="text-sm text-center text-zinc-500 dark:text-zinc-300">{{ $caption | $.Page.RenderString }}</p>
+      {{- end }}
+    {{- else -}}
+      {{- $dataSzes := "(min-width: 1024px) 100vw, 50vw" -}}
+      {{- $actualImg := $src.Resize (print "640x jpg " $filter) -}}
+      <picture>
+        <source type="image/jpeg" srcset="
+        {{- with $respSizes -}}
+          {{- range $i, $e := . -}}
+            {{- if ge $src.Width . -}}
+              {{- if $i }}, {{ end -}}{{- ($src.Resize (print . "x jpg " $filter) ).RelPermalink }} {{ . }}w
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}" sizes="{{ $dataSzes }}" />
+        <img class="h-auto max-w-full rounded-lg" src="{{ $actualImg.RelPermalink }}" width="{{ $src.Width }}" height="{{ $src.Height }}" alt="{{ $alt }}" title="{{ $alt }}" loading="lazy" />
+      </picture>
+      {{- with $caption -}}
+        <p class="text-sm text-center text-zinc-500 dark:text-zinc-300">{{ $caption | $.Page.RenderString }}</p>
+      {{- end }}
+    {{- end }}
+  <!-- or otherwise simply load the URL -->
+  {{- else -}}
+    <figure>
+      <img src="{{ .Destination | safeURL }}"
+           alt="{{ .Text }}" {{ with .Title }} title="{{ . }}" {{ end }}
+           loading="lazy" />
+      {{- with $caption -}}
+        <figcaption class="text-sm text-center text-zinc-500 dark:text-zinc-300">{{ $caption | $.Page.RenderString }}</figcaption>
+      {{- end }}
+    </figure>
+  {{- end }}
 </div>

@@ -15,7 +15,7 @@
       loading="lazy"
     >
   </figure>
-  {{- else if eq .MediaType.SubType "gif" -}}
+  {{- else if eq (lower .MediaType.SubType) "gif" -}}
   <figure>
     <img class="w-full rounded-lg" src="{{ .RelPermalink }}"
       alt="{{ $alt }}" title="{{ $alt }}"
