@@ -31,3 +31,6 @@ older_posts = "Older posts"
 categories = "Categories"
 tags = "Tags"
 series = "Series"
+
+[article]
+page_views = "Views"

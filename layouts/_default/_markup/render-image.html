@@ -13,7 +13,7 @@
   <!-- check if it exists as a page resource and is not an SVG -->
   {{- if and (.Page.Resources.Get $dest) (ne (.Page.Resources.Get $dest).MediaType.SubType "svg") -}}
     {{- $src := .Page.Resources.Get $dest -}}
-    {{- if eq (lower $src.MediaType.SubType) "gif" -}}
+    {{- if or (eq (lower $src.MediaType.SubType) "gif") (eq (lower $src.MediaType.SubType) "webp") -}}
       <figure>
         <img class="h-auto max-w-full rounded-lg" src="{{ $src.RelPermalink }}" alt="{{ $alt }}" title="{{ $alt }}" loading="lazy" />
       </figure>
