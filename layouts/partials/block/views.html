@@ -1,0 +1,23 @@
+{{- if .Site.Params.showViews -}}
+<div class="flex flex-col gap-y-1 md:flex-row md:gap-y-0 md:gap-x-4 text-zinc-500 dark:text-zinc-300">
+    <div class="flex flex-row text-base gap-x-1">
+    <i class="h-6 w-6 flex-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-activity">
+            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+            <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+    </i>
+    <span id="{{ .File.UniqueID }}" title="{{ i18n " article.page_views" }}"> </span>
+    <script>
+        var r = new XMLHttpRequest();
+        r.addEventListener('load', function() {
+            document.getElementById('{{ .File.UniqueID }}').innerText = JSON.parse(this.responseText).count_unique + ' ' + {{ i18n "article.page_views" }}
+        })
+        r.open('GET', "https://{{ .Site.Params.goatcounter }}.goatcounter.com/counter/" + encodeURIComponent({{ .RelPermalink }}.replace(/(\/)?$/, '')) + '.json')
+        r.send()
+    </script>
+    </div>
+</div>
+{{- end -}}
