@@ -1,6 +1,7 @@
 {{ $page := . }}
 {{ $isntDefault := not (or (eq (trim $.Site.Params.contentTypeName " ") "posts") (eq (trim $.Site.Params.contentTypeName " ") "")) }}
 {{ $contentTypeName := cond $isntDefault (string $.Site.Params.contentTypeName) "posts" }}
+{{ $color := "cyan" }}
 {{ with site.Menus.main }}
 <nav class="h-full static">
   <button id="navbar-menu-toggle" type="button" class="inline-flex items-center p-2 text-sm text-zinc-800 dark:text-zinc-200 rounded-lg md:hidden" aria-controls="navbar-menu" aria-expanded="false">
@@ -15,7 +16,7 @@
       {{- $isCurrent := or ($page.IsMenuCurrent .Menu .) ($page.HasMenuCurrent .Menu .) (and $page.IsHome (and .Page (eq $contentTypeName .Page.Type))) -}}
       {{ if not .HasChildren }}
         <li id="{{ .Identifier }}" class="">
-          <a class="block px-3 py-3 hover:text-emerald-600 {{- if $isCurrent }} text-emerald-600{{ end -}}"
+          <a class="block px-3 py-3 hover:text-{{ $color }}-400 {{- if $isCurrent }} text-{{ $color }}-400 {{ end -}}"
             href="{{ .URL }}" title="{{ .Name }}">{{ .Name }}</a>
         </li>
       {{ end }}
