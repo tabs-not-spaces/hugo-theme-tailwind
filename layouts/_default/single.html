@@ -5,7 +5,8 @@
 {{ define "main" }}
 <div id="progress" class="fixed top-4.5 left-0 w-full h-1 bg-blue-500 z-40"></div>
 <div class="w-full max-w-4xl lg:max-w-6xl z-10">
-  <h1 class="text-4xl text-zinc-800 dark:text-cyan-400 text-center">
+  {{ $color:= .Page.Params.color | default "cyan" }}
+  <h1 class="text-4xl text-zinc-800 dark:text-{{ $color }}-400 text-center">
     <a href="{{ .RelPermalink }}">{{ .Title | .RenderString }}</a>
   </h1>
   <div class="flex flex-col mt-6 mx-2 md:mx-0 rounded-lg overflow-hidden shadow-md bg-white dark:bg-zinc-700">
@@ -15,9 +16,11 @@
         {{ . | $.Page.RenderString }}
       </h2>
       {{ end }}
-      {{ partial "block/time.html" . }}
-      {{ partial "block/author.html" . }}
-      {{ partial "block/taxonomies.html" .}}
+      {{ if eq .Layout "post" }}
+        {{ partial "block/time.html" . }}
+        {{ partial "block/author.html" . }}
+        {{ partial "block/taxonomies.html" .}}
+      {{ end }}
     </div>
     <div class="px-6">
       {{ partial "block/image.html" . }}

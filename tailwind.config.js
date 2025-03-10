@@ -6,6 +6,12 @@ module.exports = {
     "./layouts/**/*.html",
     "./assets/js/*.js",
   ],
+  safelist: [
+    {
+      pattern: /text-(red|pink|indigo|blue|purple|green|yellow|orange|cyan|teal|lime)-400/,
+      variants: ['hover', 'dark']
+    }
+  ],
   theme: {
     extend: {
       spacing: {
