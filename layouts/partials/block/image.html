@@ -10,14 +10,14 @@
   {{- with .Resources.Get $dest -}}
   {{- if eq .MediaType.SubType "svg" -}}
   <figure>
-    <img class="w-full rounded.lg" src="{{ .RelPermalink }}"
+    <img class="w-full rounded-t-lg" src="{{ .RelPermalink }}"
       alt="{{ $alt }}" title="{{ $alt }}"
       loading="lazy"
     >
   </figure>
   {{- else if or (eq (lower .MediaType.SubType) "gif") (eq (lower .MediaType.SubType) "webp") -}}
   <figure>
-    <img class="w-full rounded-lg" src="{{ .RelPermalink }}"
+    <img class="w-full rounded-t-lg" src="{{ .RelPermalink }}"
       alt="{{ $alt }}" title="{{ $alt }}"
       loading="lazy"
     >
@@ -41,7 +41,7 @@
   <!-- or otherwise simply load the URL -->
   {{- else -}}
   <figure>
-    <img class="w-full rounded-lg" src="{{ .Params.image | safeURL }}"
+    <img class="w-full tr-rounded-t-lg" src="{{ .Params.image | safeURL }}"
       alt="{{ $alt }}" title="{{ $alt }}"
       loading="lazy"
     >
