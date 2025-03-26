@@ -11,6 +11,11 @@ ignoreErrors = ["error-remote-getjson"]
 theme = "hugo-theme-tailwind"
 enableGitInfo = true
 
+rssURI = "feed"
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
 [markup]
   _merge = "deep"
 
